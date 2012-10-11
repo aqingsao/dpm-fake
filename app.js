@@ -5,7 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , argv = require('optimist').default({d: 10, e: false}).argv;
+  , argv = require('optimist').default({d: 10, e: 200}).argv;
 
 var app = module.exports = express.createServer();
 
@@ -29,10 +29,10 @@ app.configure('production', function(){
 
 // Routes
 
-console.log("Delay in response: " + argv.d +", throw exception? " + argv.e);
+console.log("Delay in " + argv.d +" seconds with response " + argv.e);
 app.get('/dpm-payment', routes.index);
 app.post('/dpm-payment', function(req, res){
-  routes.dpmPayment(req, res, argv.d, argv.e); 
+  routes.dpmPayment(req, res, new Number(argv.d), argv.e); 
 });
 
 app.listen(8088, function(){
