@@ -9,5 +9,12 @@ This is a fake DPM implementation
 
 Then fake dpm will listen on port 3000.
 
+# More options
+There are 2 optional arguments when you run `node app.js`
+1. -d, used to specify delay in seconds before this fake dpm to reponse the requests, default value is 10.
+Example: `node app.js -d=30`
+2. -e, used to specify whether this fake dpm will throw an exception for requests, default value is false.
+Example: `node app.js -e`
+
 # TO DO
 You are welcome to contribute and build more function on this project
