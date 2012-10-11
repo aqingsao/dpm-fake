@@ -9,14 +9,15 @@ exports.index = function(req, res){
 
 exports.dpmPayment = function(req, res){
   console.log('dpm payment waiting...');
-  var seconds = 20;
+  var seconds = 10;
   var interval = 2;
   var waiting = setInterval(function(){
      seconds = seconds - interval;
      console.log(seconds + " seconds left");
      if(seconds <= 0){
        clearInterval(waiting);
-       res.redirect('http://localhost:8088/myaccount/paybill-receipt-cc?token=token&p=MTIzNDU2Nzg5MCw0NTYsMTAw');
+       //res.redirect('http://localhost:8088/myaccount/paybill-receipt-cc?token=token&p=MTIzNDU2Nzg5MCw0NTYsMTAw');
+       throw 'exception';
      }
   }, interval * 1000);
 };
