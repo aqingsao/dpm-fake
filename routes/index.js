@@ -17,7 +17,7 @@ exports.dpmPayment = function(req, res, delay, e){
      if(seconds <= 0){
        clearInterval(waiting);
        switch(e){
-         case '303':
+         case 303:
            res.redirect('http://localhost:8088/myaccount/paybill-receipt-cc?token=token&p=MTIzNDU2Nzg5MCw0NTYsMTAw');
            break;
          case true: 
