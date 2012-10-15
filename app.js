@@ -5,9 +5,19 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , argv = require('optimist').default({d: 10, e: 200}).argv;
+  , argv = require('optimist').default({d: 10, e: 303}).argv
+  , crypto = require('crypto')
+  , https = require('https')
+  , fs = require('fs'); 
 
-var app = module.exports = express.createServer();
+
+if(argv.s){
+  var httpsOptions = {key: fs.readFileSync('key.pem'), cert: fs.readFileSync('cert.pem')};
+  var app = module.exports = express.createServer(httpsOptions);
+}
+else{
+  var app = module.exports = express.createServer();
+}
 
 // Configuration
 app.configure(function(){
@@ -36,5 +46,6 @@ app.post('/dpm-payment', function(req, res){
 });
 
 app.listen(8088, function(){
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+  console.log("Express server listening on port %d in %s env and %s mode", app.address().port, app.settings.env, argv.s ? 'secure' : 'normal');
 });
+
