@@ -34,5 +34,10 @@ Https mode is also supported with option "-s", but please generate certificate f
 
 Then you can run with `node app.js -s`
 
+# Setting port
+You can use option "-p" to specify port, the default one is 8088.
+
+Example: `node app.js -p 3000` will listen on port 3000.
+
 # TO DO
 You are welcome to contribute and build more function on this project

@@ -5,7 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , argv = require('optimist').default({d: 10, e: 303}).argv
+  , argv = require('optimist').default({d: 10, e: 303, p:8088}).argv
   , crypto = require('crypto')
   , https = require('https')
   , fs = require('fs'); 
@@ -45,7 +45,10 @@ app.post('/dpm-payment', function(req, res){
   routes.dpmPayment(req, res, new Number(argv.d), argv.e); 
 });
 
-app.listen(8088, function(){
+if(argv.p < 1024 || argv.p > 65535){
+  throw "Illegal port, should be between 1024 and 65535"
+}
+app.listen(argv.p, function(){
   console.log("Express server listening on port %d in %s env and %s mode", app.address().port, app.settings.env, argv.s ? 'secure' : 'normal');
 });
 
