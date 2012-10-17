@@ -5,7 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , argv = require('optimist').default({d: 10, e: 303, p:8088}).argv
+  , argv = require('optimist').default({d: 10, e: 303, p:3000}).argv
   , crypto = require('crypto')
   , https = require('https')
   , fs = require('fs'); 
